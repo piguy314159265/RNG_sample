@@ -1,6 +1,5 @@
-﻿  stdafx.cpp
-  RNG_sample.cpp
-c:\users\dblanchard\documents\visual studio 2015\projects\rng_sample\rng_sample\rng_sample.cpp(10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\dblanchard\documents\visual studio 2015\projects\rng_sample\rng_sample\rng_sample.cpp(11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+﻿  RNG_sample.cpp
+c:\users\dblanchard\documents\visual studio 2015\projects\rng_sample\rng_sample\rng_sample.cpp(12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\dblanchard\documents\visual studio 2015\projects\rng_sample\rng_sample\rng_sample.cpp(13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   RNG_sample.vcxproj -> C:\Users\dblanchard\Documents\Visual Studio 2015\Projects\RNG_sample\Debug\RNG_sample.exe
   RNG_sample.vcxproj -> C:\Users\dblanchard\Documents\Visual Studio 2015\Projects\RNG_sample\Debug\RNG_sample.pdb (Full PDB)

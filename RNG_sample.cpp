@@ -5,33 +5,51 @@
 #include <iostream>
 #include <random>
 #include <vector>
-//#include <thread>
+#include <thread>
+
+const unsigned int initial_seed = 1234;
 
 const int min = 0.0;
 const int max = 1.0;
-const int num_samples = 100000;
+const int num_samples = 10;
 const int num_threads = 2;
-const int seed = 1234;
 
+void print_rns(unsigned int seed, unsigned int n)
+{
+	std::mt19937_64 thread_gen(seed);
+	std::uniform_real_distribution<> thread_dist(min, max);
+
+	for (int i = 0; i != n; ++i)
+	{
+		std::cout << thread_dist(thread_gen) << "\n";
+	}
+}
 
 int main()
 {
-	std::vector<double> rns;
-	rns.reserve(num_samples);
+	//std::random_device rd; could use this to seed main_gen if non-deterministic is desired
+	std::mt19937_64 main_gen(initial_seed);
+	
+	std::uniform_int_distribution<> seed_dist(0, 2147483647);
 
-	std::random_device rd;
-	std::mt19937 main_gen(rd());
-
-	std::uniform_real_distribution<> distr(min, max);
-
-	for (int i = 0; i != num_samples; ++i)
+	// generate seeds
+	int seeds[num_threads];
+	for (int i = 0; i != num_threads; ++i)
 	{
-		rns.push_back(distr(main_gen));
+		seeds[i] = seed_dist(main_gen);
 	}
 
-	for (int i = 0; i != 10; i++)
+	// run threads
+	std::thread threads[num_threads];
+	for (int i = 0; i != num_threads; ++i)
 	{
-		std::cout << rns.at(i) << "\n";
+		threads[i] = std::thread(print_rns, seeds[i], num_samples/num_threads);
+	}
+
+	// join threads
+	for (int i = 0; i != num_threads; ++i)
+	{
+		threads[i].join();
 	}
 
     return 0;
